@@ -15,7 +15,23 @@ var LikeButton = React.createClass({
   handleClick: function(event) {
     this.setState({liked: !this.state.liked});
   },
+  componentWillMount:function(){
+    console.log("before first render");
+  },
+  componentDidMount:function(){
+    console.log("after first render");
+  },
+  componentWillUpdate:function(){
+    console.log("state updated and before render");
+  },
+  componentDidUpdate:function(){
+    console.log("state updated and after render");
+  },
+  componentWillUnmount:function(){
+    console.log("dom unmounted!");
+  },
   render: function() {
+    console.log("get state info");
     var text = this.state.liked ? 'like' : 'haven\'t liked';
     return (
       <p onClick={this.handleClick}>

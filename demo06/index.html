@@ -8,20 +8,45 @@
   <body>
     <script type="text/babel">
 
-      var data = 123;
+      var data1 = "123";
+      var data2 = "456";
 
       var MyTitle = React.createClass({
         propTypes: {
-          title: React.PropTypes.string.isRequired,
+          title: React.PropTypes.string,
+        },
+
+        componentWillReceiveProps: function(nextProps){
+          console.log(nextProps.title);
+        },
+
+        
+
+        componentWillUpdate: function(){
+          console.log("will update invoked");
+          console.log(this.props);
+          console.log(arguments[0]);
+        },
+
+        componentDidUpdate:function(){
+          console.log("did update invoked");
+          console.log(this.props);
+          console.log(arguments[0]);
         },
 
         render: function() {
+          console.log("into render"+ this.props.title);
           return <h1> {this.props.title} </h1>;
         }
       });
 
       ReactDOM.render(
-        <MyTitle title={data} />,
+        <MyTitle title={data1} />,
+        document.body
+      );
+
+      ReactDOM.render(
+        <MyTitle title={data2} />,
         document.body
       );
 
